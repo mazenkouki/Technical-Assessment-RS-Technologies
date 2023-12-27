@@ -2,8 +2,26 @@
 import React from "react";
 import {Card, CardHeader, CardBody, CardFooter, Avatar, Button} from "@nextui-org/react";
 
-export default function PatientCard() {
-  const [isFollowed, setIsFollowed] = React.useState(false);
+// Add a type definition for the patient prop
+type PatientInfo = {
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  gender: string;
+  contactNumber: string;
+  email: string;
+  address: string;
+  medicalHistory: string;
+  bloodType: string;
+  allergies: string;
+  medications: string;
+  surgeries: string;
+  chronicConditions: string;
+  lastVisitDate: string;
+  nextAppointmentDate: string;
+};
+
+export default function PatientCard({ patient }: { patient: PatientInfo }) {
 
   return (
     <Card className="max-w-[340px]">
@@ -11,42 +29,30 @@ export default function PatientCard() {
         <div className="flex gap-5">
           <Avatar isBordered radius="full" size="md" src="/avatars/avatar-1.png" />
           <div className="flex flex-col gap-1 items-start justify-center">
-            <h4 className="text-small font-semibold leading-none text-default-600">Zoey Lang</h4>
-            <h5 className="text-small tracking-tight text-default-400">@zoeylang</h5>
+            <h4 className="text-small font-semibold leading-none text-default-600">
+              {patient.firstName} {patient.lastName}
+            </h4>
+            <h5 className="text-small tracking-tight text-default-400">
+              {patient.email}
+            </h5>
           </div>
         </div>
-        <Button
-          className={isFollowed ? "bg-transparent text-foreground border-default-200" : ""}
-          color="primary"
-          radius="full"
-          size="sm"
-          variant={isFollowed ? "bordered" : "solid"}
-          onPress={() => setIsFollowed(!isFollowed)}
-        >
-          {isFollowed ? "Unfollow" : "Follow"}
-        </Button>
-      </CardHeader>
+        </CardHeader>
       <CardBody className="px-3 py-0 text-small text-default-400">
-        <p>
-          Frontend developer and UI/UX enthusiast. Join me on this coding adventure!
-        </p>
-        <span className="pt-2">
-          #FrontendWithZoey 
-          <span className="py-2" aria-label="computer" role="img">
-            💻
-          </span>
-        </span>
+        <p>Blood Type: {patient.bloodType}</p>
+        <p>Allergies: {patient.allergies}</p>
+        <p>Chronic Conditions: {patient.chronicConditions}</p>
+        <p>Last Visit: {patient.lastVisitDate}</p>
+        <p>Next Appointment: {patient.nextAppointmentDate}</p>
       </CardBody>
       <CardFooter className="gap-3">
-        <div className="flex gap-1">
-          <p className="font-semibold text-default-400 text-small">4</p>
-          <p className=" text-default-400 text-small">Following</p>
-        </div>
-        <div className="flex gap-1">
-          <p className="font-semibold text-default-400 text-small">97.1K</p>
-          <p className="text-default-400 text-small">Followers</p>
-        </div>
+        <Button
+          variant="bordered"
+        >
+          View Full Profile
+        </Button>
       </CardFooter>
     </Card>
   );
 }
+

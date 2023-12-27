@@ -1,5 +1,6 @@
 import "./globals.css";
-import Provider from "./Provider";
+import Provider from "./providers/Provider";
+import {UiProvider} from "./providers/UiProvider";
 
 
 import type { Metadata } from "next";
@@ -23,8 +24,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className }  >
         <Provider>
+          <UiProvider>
           <NavBar />
           {children}
+          </UiProvider>
         </Provider>
      
          </body>
