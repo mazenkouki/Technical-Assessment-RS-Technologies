@@ -12,7 +12,7 @@ export class Patient {
   lastName: string;
 
   @Column({ type: 'date', nullable: true })
-  dateOfBirth?: Date;
+  dateOfBirth?: string;
 
   @Column({ type: 'varchar', length: 10, nullable: true })
   gender?: string;
@@ -45,10 +45,10 @@ export class Patient {
   chronicConditions?: string;
 
   @Column({ type: 'date', nullable: true })
-  lastVisitDate?: Date;
+  lastVisitDate?: string;
 
   @Column({ type: 'date', nullable: true })
-  nextAppointmentDate?: Date;
+  nextAppointmentDate?: string;
 
   @CreateDateColumn()
   createdAt: Date;

@@ -12,7 +12,7 @@ export class PatientController {
     return this.patientService.create(createPatientDto);
   }
 
-  @Get()
+  @Get("getAll")
   async findAll() {
     return await this.patientService.findAll();
   }

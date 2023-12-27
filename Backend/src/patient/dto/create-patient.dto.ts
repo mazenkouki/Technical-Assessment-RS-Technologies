@@ -1,5 +1,6 @@
 import {
   IsDate,
+  IsDateString,
   IsEmail,
   IsNotEmpty,
   IsOptional,
@@ -24,8 +25,8 @@ export class CreatePatientDto {
   lastName: string;
 
   @IsOptional()
-  @IsDate({ message: 'Date of birth must be a valid date.' })
-  dateOfBirth?: Date;
+  @IsDateString()
+  dateOfBirth?: string;
 
   @IsOptional()
   @IsString({ message: 'Gender must be a string.' })
@@ -85,10 +86,10 @@ export class CreatePatientDto {
   chronicConditions?: string;
 
   @IsOptional()
-  @IsDate({ message: 'Last visit date must be a valid date.' })
-  lastVisitDate?: Date;
+  @IsDateString()
+  lastVisitDate?: string;
 
   @IsOptional()
-  @IsDate({ message: 'Next appointment date must be a valid date.' })
-  nextAppointmentDate?: Date;
+  @IsDateString()
+  nextAppointmentDate?: string;
 }
