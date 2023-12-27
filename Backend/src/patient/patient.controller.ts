@@ -2,38 +2,33 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PatientService } from './patient.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Patient } from './entities/patient.entity';
 
 @Controller('patient')
 export class PatientController {
-  constructor(
-    @InjectRepository(Patient) readonly patientRepository: Repository<Patient>,
-  ) {}
+  constructor(private readonly patientService: PatientService) {}
 
   @Post()
   create(@Body() createPatientDto: CreatePatientDto) {
-    return this.patientRepository.create(createPatientDto);
+    return this.patientService.create(createPatientDto);
   }
 
   @Get()
   async findAll() {
-    return await this.patientRepository.find();
+    return await this.patientService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.patientRepository.findOne({ where: { id: +id } });
+    return this.patientService.findOne(+id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePatientDto: UpdatePatientDto) {
-    return this.patientRepository.update(+id, updatePatientDto);
+    return this.patientService.update(+id, updatePatientDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.patientRepository.delete(+id);
+    return this.patientService.remove(+id);
   }
 }

@@ -1,14 +1,26 @@
-import { IsDate, IsEmail, IsNotEmpty, IsOptional, IsPhoneNumber, IsString, MaxLength } from 'class-validator';
+import {
+  IsDate,
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsPhoneNumber,
+  IsString,
+  MaxLength,
+} from 'class-validator';
 
 export class CreatePatientDto {
   @IsNotEmpty({ message: 'First name is required.' })
   @IsString({ message: 'First name must be a string.' })
-  @MaxLength(50, { message: 'First name must be less than or equal to 50 characters.' })
+  @MaxLength(50, {
+    message: 'First name must be less than or equal to 50 characters.',
+  })
   firstName: string;
 
   @IsNotEmpty({ message: 'Last name is required.' })
   @IsString({ message: 'Last name must be a string.' })
-  @MaxLength(50, { message: 'Last name must be less than or equal to 50 characters.' })
+  @MaxLength(50, {
+    message: 'Last name must be less than or equal to 50 characters.',
+  })
   lastName: string;
 
   @IsOptional()
@@ -17,22 +29,32 @@ export class CreatePatientDto {
 
   @IsOptional()
   @IsString({ message: 'Gender must be a string.' })
-  @MaxLength(10, { message: 'Gender must be less than or equal to 10 characters.' })
+  @MaxLength(10, {
+    message: 'Gender must be less than or equal to 10 characters.',
+  })
   gender?: string;
 
   @IsOptional()
-  @IsPhoneNumber(null, { message: 'Contact number must be a valid phone number.' })
-  @MaxLength(15, { message: 'Contact number must be less than or equal to 15 characters.' })
+  @IsPhoneNumber(null, {
+    message: 'Contact number must be a valid phone number.',
+  })
+  @MaxLength(15, {
+    message: 'Contact number must be less than or equal to 15 characters.',
+  })
   contactNumber?: string;
 
   @IsOptional()
   @IsEmail({}, { message: 'Email must be a valid email address.' })
-  @MaxLength(50, { message: 'Email must be less than or equal to 50 characters.' })
+  @MaxLength(50, {
+    message: 'Email must be less than or equal to 50 characters.',
+  })
   email?: string;
 
   @IsOptional()
   @IsString({ message: 'Address must be a string.' })
-  @MaxLength(255, { message: 'Address must be less than or equal to 255 characters.' })
+  @MaxLength(255, {
+    message: 'Address must be less than or equal to 255 characters.',
+  })
   address?: string;
 
   @IsOptional()
@@ -41,7 +63,9 @@ export class CreatePatientDto {
 
   @IsOptional()
   @IsString({ message: 'Blood type must be a string.' })
-  @MaxLength(5, { message: 'Blood type must be less than or equal to 5 characters.' })
+  @MaxLength(5, {
+    message: 'Blood type must be less than or equal to 5 characters.',
+  })
   bloodType?: string;
 
   @IsOptional()

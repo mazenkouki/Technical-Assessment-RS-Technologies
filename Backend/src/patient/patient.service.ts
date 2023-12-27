@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Patient } from './entities/patient.entity';
 import { CreatePatientDto } from './dto/create-patient.dto';
-
+import {UpdatePatientDto} from './dto/update-patient.dto';
 @Injectable()
 export class PatientService {
   constructor(
@@ -43,7 +43,7 @@ export class PatientService {
     return await this.patientsRepository.save(patient);
   }
 
-  async update(id: number, updatePatientDto: CreatePatientDto): Promise<Patient> {
+  async update(id: number, updatePatientDto: UpdatePatientDto): Promise<Patient> {
     const patient = await this.patientsRepository.preload({
       id: id,
       ...updatePatientDto,
