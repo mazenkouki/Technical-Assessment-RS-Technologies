@@ -25,7 +25,21 @@ export class PatientService {
   }
 
   async create(createPatientDto: CreatePatientDto): Promise<Patient> {
-    const patient = this.patientsRepository.create(createPatientDto);
+    const patient = new Patient();
+    patient.firstName = createPatientDto.firstName;
+    patient.lastName = createPatientDto.lastName;
+    patient.email = createPatientDto.email;
+    patient.address = createPatientDto.address;
+    patient.gender = createPatientDto.gender;
+    patient.allergies = createPatientDto.allergies;
+    patient.chronicConditions = createPatientDto.chronicConditions;
+    patient.bloodType = createPatientDto.bloodType;
+    patient.dateOfBirth = createPatientDto.dateOfBirth;
+    patient.lastVisitDate = createPatientDto.lastVisitDate;
+    patient.medicalHistory = createPatientDto.medicalHistory;
+    patient.medications = createPatientDto.medications;
+    patient.nextAppointmentDate = createPatientDto.nextAppointmentDate;
+    patient.surgeries = createPatientDto.surgeries;
     return await this.patientsRepository.save(patient);
   }
 
