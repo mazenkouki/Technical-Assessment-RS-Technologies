@@ -2,6 +2,7 @@ import PatientCard from "./components/PatientCard";
 
 export default function Home() {
   const patientData = {
+    id:1,
     firstName: "Alice",
     lastName: "Johnson",
     dateOfBirth: "1975-04-23",

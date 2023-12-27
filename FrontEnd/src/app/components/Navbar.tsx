@@ -20,9 +20,9 @@ export default function NavBar() {
           <div className="justify-start items-start gap-12 flex">
             <Link
               className="dark:text-white dark:hover:text-teal-500 hover:text-red-500 transition ease-in-out delay-150 duration-500"
-              href="/"
+              href="/AllPatients"
             >
-              Home
+              All Patients
             </Link>
             <Link
               className="dark:text-white dark:hover:text-teal-500 hover:text-red-500 transition ease-in-out delay-150 duration-500"
