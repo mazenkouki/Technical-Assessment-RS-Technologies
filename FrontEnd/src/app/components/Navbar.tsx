@@ -30,8 +30,6 @@ export default function NavBar() {
             >
               Contact
             </Link>
-          
-        
           </div>
         </div>
         <div className="justify-start items-center gap-6 flex">
@@ -62,10 +60,8 @@ export default function NavBar() {
               </svg>
             </Link>
           </div>
-         
-        
+
           <ThemeSwitcher />
-    
         </div>
       </div>
     </main>

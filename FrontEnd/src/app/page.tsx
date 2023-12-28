@@ -1,29 +1,12 @@
+import React from 'react';
 import PatientCard from "./components/PatientCard";
 
 export default function Home() {
-  const patientData = {
-    id:1,
-    firstName: "Alice",
-    lastName: "Johnson",
-    dateOfBirth: "1975-04-23",
-    gender: "F",
-    contactNumber: "+12345678901",
-    email: "alice.johnson@example.com",
-    address: "123 Cherry Lane, Springfield, SP",
-    medicalHistory: "No known allergies. Previous surgery for appendicitis.",
-    bloodType: "A+",
-    allergies: "None",
-    medications: "Ibuprofen as needed",
-    surgeries: "Appendectomy",
-    chronicConditions: "Hypertension",
-    lastVisitDate: "2023-03-15",
-    nextAppointmentDate: "2023-09-10",
-  };
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between pt-10 pb-10 pl-5 pr-5 gap-5 dark:bg-neutral-900">
-      <div>
-        <PatientCard patient={patientData} />
-      </div>
+    <main className="flex min-h-screen flex-col items-center justify-center p-5 gap-5 dark:bg-neutral-900">
+      <h1 className="text-9xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-400 dark:from-blue-400 dark:to-teal-400">
+        Welcome to Clinic
+      </h1>
     </main>
   );
 }
