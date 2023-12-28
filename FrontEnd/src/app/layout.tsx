@@ -1,7 +1,6 @@
 import "./globals.css";
 import Provider from "./providers/Provider";
 import { UiProvider } from "./providers/UiProvider";
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NavBar from "./components/Navbar";
@@ -25,6 +24,7 @@ export default function RootLayout({
           <UiProvider>
             <NavBar />
             {children}
+          
           </UiProvider>
         </Provider>
       </body>
