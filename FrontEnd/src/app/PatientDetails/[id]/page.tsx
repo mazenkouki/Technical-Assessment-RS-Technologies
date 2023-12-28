@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { PatientInfo } from "../../types/index";
 import { RiEdit2Fill } from "react-icons/ri";
 import { useRouter } from "next/navigation";
@@ -7,30 +6,30 @@ import { useEffect, useState } from "react";
 import { Avatar } from "@nextui-org/react";
 
 const Profile: React.FC<{ params: { id: string } }> = ({ params }) => {
+  const url =  process.env.NEXT_PUBLIC_API_URL
+  
   const router = useRouter();
   const id = params.id;
   const [patient, setPatient] = useState<PatientInfo | null>(null);
-  useEffect(() => {
-    const fetchPatient = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/patient/" + id);
-        console.log(response, "res");
+useEffect(() => {
+  const fetchPatient = async () => {
+    try {
+      const response = await fetch(`${url}/${id}`);
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data: PatientInfo = await response.json();
-        setPatient(data);
-      } catch (error) {
-        console.error("Could not fetch patients:", error);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);  
       }
-    };
-    // bg-gradient-to-r from-red-100 to-red-400 dark:from-blue-100 dark:to-teal-400
-    fetchPatient();
-  }, []);
+      const data: PatientInfo = await response.json();
+      setPatient(data);
+    } catch (error) {
+      console.error("Could not fetch patients:", error);
+    }
+  };
+  fetchPatient();
+}, [id]);
   return (
     <main className=" dark:bg-black/50">
-    <div className="md:w-2/4  mx-[20%] border shadow-md p-4 relative  bg-gradient-to-r from-red-100 to-red-400 dark:from-blue-100 dark:to-teal-400
+    <div className="md:w-2/4  mx-[20%] border shadow-md py-20 px-20 relative  bg-gradient-to-r from-red-100 to-red-400 dark:from-blue-100 dark:to-teal-400
 ">
       <div
         className="absolute top-[2%] right-[2%] cursor-pointer"
@@ -58,9 +57,9 @@ const Profile: React.FC<{ params: { id: string } }> = ({ params }) => {
           <p className="font-primary ">{patient?.email || "empty"}</p>
           <p className="font-primary font-bold text-lg text-primary">
             {" "}
-            Contact{" "}
+            Gender{" "}
           </p>
-          <p className="font-primary">{patient?.contactNumber || "empty"}</p>
+          <p className="font-primary">{patient?.gender || "empty"}</p>
 
           <p className="font-primary font-bold text-lg text-primary">
             {" "}

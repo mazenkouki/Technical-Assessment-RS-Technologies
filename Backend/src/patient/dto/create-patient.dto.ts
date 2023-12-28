@@ -39,7 +39,7 @@ export class CreatePatientDto {
   @IsPhoneNumber(null, {
     message: 'Contact number must be a valid phone number.',
   })
-  @MaxLength(15, {
+  @MaxLength(40, {
     message: 'Contact number must be less than or equal to 15 characters.',
   })
   contactNumber?: string;

@@ -6,7 +6,6 @@ export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
   const [toggle, setToggle] = useState(false);
   const { theme, setTheme } = useTheme();
-  console.log("my theme", theme);
 
   useEffect(() => {
     setMounted(true);

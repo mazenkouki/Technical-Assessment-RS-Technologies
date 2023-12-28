@@ -7,13 +7,12 @@ import { Input, Button, Avatar } from "@nextui-org/react";
 const EditProfile: React.FC<{ params: { id: string } }> = ({ params }) => {
   const id = parseInt(params.id);
   const [patient, setPatient] = useState<PatientInfo | null>(null);
-  console.log(patient, "the patient");
+  const url =  process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     const fetchPatient = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/patient/${id}`);
-        console.log(response, "res");
+        const response = await fetch(`${url}/${id}`);
 
         if (!response.ok) {
           const errorMessage = await response.text();
@@ -43,7 +42,7 @@ const EditProfile: React.FC<{ params: { id: string } }> = ({ params }) => {
         allergies,
         medicalHistory,
         medications,
-        contactNumber,
+        gender,
         surgeries,
         dateOfBirth,
       } = patient;
@@ -62,7 +61,7 @@ const EditProfile: React.FC<{ params: { id: string } }> = ({ params }) => {
             allergies,
             medicalHistory,
             medications,
-            contactNumber,
+            gender,
             surgeries,
             dateOfBirth,
           }),
@@ -134,14 +133,14 @@ const EditProfile: React.FC<{ params: { id: string } }> = ({ params }) => {
           />
           <p className="font-primary font-bold text-lg text-red-500 dark:text-primary">
             {" "}
-            Contact{" "}
+            Gender{" "}
           </p>
           <Input
             type="text"
-            label="contact number"
+            label="gender"
             variant="bordered"
-            value={patient?.contactNumber || ""}
-            onChange={(e) => handleChange("contactNumber", e.target.value)}
+            value={patient?.gender || ""}
+            onChange={(e) => handleChange("gender", e.target.value)}
             className="max-w-xs"
           />
           <p className="font-primary font-bold text-lg text-red-500 dark:text-primary">

@@ -3,19 +3,15 @@ import React, { useEffect, useState } from 'react';
 import PatientCard from '../components/PatientCard';
 import { PatientInfo } from '../types/index';
 
-/**
- * AllPatients component fetches and displays a list of PatientInfo objects.
- * Uses React hooks like useState and useEffect to fetch patient data from API
- * and render PatientCard for each patient.
- */
+
 const AllPatients: React.FC = () => {
   const [patients, setPatients] = useState<PatientInfo[]>([]);
-  console.log("patients", patients);
+  const url =  process.env.NEXT_PUBLIC_API_URL
+
   useEffect(() => {
     const fetchPatients = async () => {
       try {
-        const response = await fetch("http://localhost:3000/patient/getAll");
-        console.log(response, "res");
+        const response = await fetch(`${url}/getAll`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

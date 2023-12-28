@@ -1,5 +1,4 @@
 import React from 'react';
-import PatientCard from "./components/PatientCard";
 
 export default function Home() {
   return (
