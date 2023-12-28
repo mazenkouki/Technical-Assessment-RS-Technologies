@@ -1,12 +1,10 @@
 import "./globals.css";
 import Provider from "./providers/Provider";
-import {UiProvider} from "./providers/UiProvider";
-
+import { UiProvider } from "./providers/UiProvider";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NavBar from "./components/Navbar";
-
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,15 +20,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className }  >
+      <body className={inter.className}>
         <Provider>
           <UiProvider>
-          <NavBar />
-          {children}
+            <NavBar />
+            {children}
           </UiProvider>
         </Provider>
-     
-         </body>
+      </body>
     </html>
   );
 }

@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { PatientModule } from './patient/patient.module';
 import { Patient } from './patient/entities/patient.entity';
 
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({

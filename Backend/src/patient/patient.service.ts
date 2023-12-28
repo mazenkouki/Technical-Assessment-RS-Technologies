@@ -44,14 +44,21 @@ export class PatientService {
   }
 
   async update(id: number, updatePatientDto: UpdatePatientDto): Promise<Patient> {
-    const patient = await this.patientsRepository.preload({
+    try {const patient = await this.patientsRepository.preload({
       id: id,
       ...updatePatientDto,
     });
+
     if (!patient) {
       throw new NotFoundException(`Patient with ID ${id} not found`);
     }
     return await this.patientsRepository.save(patient);
+  }
+  catch(err){
+    console.log(err);
+    
+  }
+  
   }
 
   async remove(id: number): Promise<void> {

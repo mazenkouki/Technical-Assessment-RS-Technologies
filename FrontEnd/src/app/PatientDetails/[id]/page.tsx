@@ -4,6 +4,7 @@ import { PatientInfo } from "../../types/index";
 import { RiEdit2Fill } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Avatar } from "@nextui-org/react";
 
 const Profile: React.FC<{ params: { id: string } }> = ({ params }) => {
   const router = useRouter();
@@ -24,11 +25,13 @@ const Profile: React.FC<{ params: { id: string } }> = ({ params }) => {
         console.error("Could not fetch patients:", error);
       }
     };
-
+    // bg-gradient-to-r from-red-100 to-red-400 dark:from-blue-100 dark:to-teal-400
     fetchPatient();
   }, []);
   return (
-    <div className=" md:w-2/4 my-[3%] mx-[20%] border shadow-md p-4 relative bg-gradient-to-r from-red-400 to-red-400 dark:from-blue-400 dark:to-teal-400">
+    <main className=" dark:bg-black/50">
+    <div className="md:w-2/4  mx-[20%] border shadow-md p-4 relative  bg-gradient-to-r from-red-100 to-red-400 dark:from-blue-100 dark:to-teal-400
+">
       <div
         className="absolute top-[2%] right-[2%] cursor-pointer"
         title="edit"
@@ -38,10 +41,10 @@ const Profile: React.FC<{ params: { id: string } }> = ({ params }) => {
       </div>
 
       <div className="flex justify-center items-center gap-20 my-5">
-        <img
-          className="w-[130px] h-[130px] rounded-full shadow border border-primary"
-          src="../../../public/user.jpg"
-          alt="User Profile"
+        <Avatar
+          src=""
+          className="w-40 h-40 text-large"
+          name={patient?.firstName}
         />
 
         <div className="p-5 bg-white w-[50%] h-auto flex flex-col justify-center items-start rounded-[8.89px] shadow border border-black border-opacity-20">
@@ -140,6 +143,7 @@ const Profile: React.FC<{ params: { id: string } }> = ({ params }) => {
         </div>
       </div>
     </div>
+  </main>
   );
 };
 

@@ -24,19 +24,14 @@ export default function NavBar() {
             >
               All Patients
             </Link>
-            <Link
-              className="dark:text-white dark:hover:text-teal-500 hover:text-red-500 transition ease-in-out delay-150 duration-500"
-              href="/Contact"
-            >
-              Contact
-            </Link>
+       
           </div>
         </div>
         <div className="justify-start items-center gap-6 flex">
           <div className="flex">
             <input
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="What are you looking for?"
+              placeholder="find patient?"
               className="w-60 pl-3 pr-4 py-1.5 dark:text-neutral-50 bg-neutral-200 dark:bg-neutral-600 rounded flex-col justify-center items-center gap-2.5 inline-flex"
             ></input>
             <Link
