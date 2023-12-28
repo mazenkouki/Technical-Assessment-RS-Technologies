@@ -3,10 +3,12 @@ import React from "react";
 import {Card, CardHeader, CardBody, CardFooter, Avatar, Button} from "@nextui-org/react";
 import { useTheme } from "next-themes";
 import { PatientInfo } from "../types";
+import { useRouter } from "next/navigation";
 // Add a type definition for the patient prop
 
 
 export default function PatientCard({ patient }: { patient: PatientInfo }) {
+  const router = useRouter()
     const { theme } = useTheme(); 
     const buttonStyle = {
         left:150,
@@ -49,7 +51,7 @@ export default function PatientCard({ patient }: { patient: PatientInfo }) {
 
           variant="bordered"
           style={buttonStyle} 
-
+  onClick={()=>router.push(`/PatientDetails/${patient.id}`)}
         >
          More insights
         </Button>

@@ -1,26 +1,45 @@
 "use client"
-
-import { PatientInfo } from "../types/index";
+import Link from 'next/link';
+import { PatientInfo } from "../../types/index";
 import { RiEdit2Fill } from "react-icons/ri";
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react';
 
-interface ProfileProps {
-  patient : PatientInfo | null;
-  switcher: (view: "edit") => void;
-}
 
-const Profile: React.FC<ProfileProps> = ({ switcher,patient }) => {
 
+const Profile: React.FC<{ params: { id: string } }> = ({ params }) => {
+  const router = useRouter()
+const id = params.id
+const [patient, setPatient] = useState<PatientInfo | null>(null);
+useEffect(()=>{
+  const fetchPatient= async () => {
+    try {
+      const response = await fetch("http://localhost:3000/patient/"+id);
+      console.log(response, "res");
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data: PatientInfo = await response.json();
+      setPatient(data);
+    } catch (error) {
+      console.error("Could not fetch patients:", error);
+    }
+  };
+
+  fetchPatient();
+},[])
   return (
-    <div className="md:w-2/4 my-[3%] mx-[5%] border shadow-md bg-neutral-50 p-4 relative">
+    <div className="md:w-2/4 my-[3%] mx-[20%] border shadow-md bg-neutral-50 p-4 relative">
+           
       <div
         className="absolute top-[2%] right-[2%] cursor-pointer"
         title="edit"
-        onClick={() => {
-          switcher("edit");
-        }}
+        onClick={() => router.push('/Edit/' + patient?.id)}
       >
         <RiEdit2Fill size={30} />
       </div>
+    
 
       <div className="flex justify-center items-center gap-20 my-5">
         <img
@@ -106,6 +125,35 @@ const Profile: React.FC<ProfileProps> = ({ switcher,patient }) => {
           <div></div>
         </div>
       </div>
+      <div className="flex justify-start items-center gap-20 my-5">
+        <div className="bg-white p-5 w-[70%] mx-10 h-auto grid grid-cols-2 gap-5 justify-start items-start rounded-[8.89px] shadow border border-black border-opacity-20">
+
+          <div>
+          <p className="font-primary font-bold text-lg text-primary">
+            {" "}
+            Last visit
+          </p>
+
+          <p className="font-primary ">
+{patient?.lastVisitDate || "empty"}       </p>
+          
+          </div>
+          <div>
+          <p className="font-primary font-bold text-lg text-primary">
+            {" "}
+            Next Appointment  
+          </p>
+
+          <p className="font-primary ">
+           {patient?.nextAppointmentDate||"empty"}
+          </p>
+          
+          </div>
+        
+       
+        </div>
+      </div>
+
     </div>
   );
 };
